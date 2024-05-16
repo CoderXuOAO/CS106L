@@ -1,0 +1,8 @@
+Assignment 3: STL HashMap (short answer questions)
+Names:
+1.at函数只能访问已经存在的<k, m>中的m，而[]运算符可以将不存在的<k, m>插入到hash中。因为[]符号的性质，所以[]不能用const限定符。
+2.使用HashMap::find比使用std::find要好，因为前者时间复杂度为O1，而后者时间复杂度为On，n为buckets的数量。
+3.HashMap类符合RAII原则，因为HashMap所需要的资源在constructor中获得，并可以直接运行，并在控制超出其作用域时，自动调用deconstructor，释放所有的资源。
+4.HashMap用的是拉链法，++iterator将会访问当前节点的下一个节点，如果下一个节点是nullptr，代表当前bucket的链表已经访问到头，所以会搜寻下一个有非空链表的bucket。
+5.因为HashMap中包含vector数组，如果是默认SMF的话，copy constructor得到的HashMap的成员vector会复制原来的vector，但并不会复制原vector中的链表，这会导致两个vector相同下标所包含的指针指向的是同一个链表。
+6.如果不使用std::move()的话，本质上还是一个copy的动作，而不是move的动作。
